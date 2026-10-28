@@ -379,7 +379,16 @@ p {
     line-height: 1.5;
     color: var(--grafito);
 }
+/* Botón "Ver más" al final de la galería */
+.grilla__mas {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(1.6rem, 4vw, 2.4rem);
+}
 
+.grilla__mas > [hidden] {
+    display: none;
+}
 /* Estado de carga: un pulso suave mientras llegan los datos */
 .tarjeta--cargando {
     aspect-ratio: 4 / 5;
@@ -605,7 +614,7 @@ p {
     color: var(--negro);
 }
 
-/* Visor con zoom: el JS agrega .visor--zoom y mueve --x / --y */
+/* Visor con zoom: el JS agrega .visor--zoom y escribe el transform de la imagen */
 .visor {
     margin: 0;
 }
@@ -616,31 +625,26 @@ p {
     border-radius: 4px;
     background: var(--piedra-200);
     cursor: zoom-in;
-    touch-action: pan-y;
+    touch-action: pan-y; /* sin zoom, un dedo sigue haciendo scroll de la página */
 }
 
 .visor__imagen {
     width: 100%;
     max-height: 80vh;
     object-fit: contain;
-    transform-origin: var(--x, 50%) var(--y, 50%);
+    transform-origin: 50% 50%;
     transition: transform 0.2s ease;
 }
 
 .visor--zoom .visor__marco {
     cursor: zoom-out;
+    touch-action: none; /* con zoom, el dedo mueve la imagen, no la página */
 }
 
-.visor--zoom .visor__imagen {
-    transform: scale(2.4);
+/* Mientras hay dedos apoyados la imagen debe seguirlos sin retraso */
+.visor--tactil .visor__imagen {
+    transition: none;
 }
-
-.visor__ayuda {
-    margin-top: 0.6rem;
-    font-size: 0.88rem;
-    color: var(--grafito);
-}
-
 .detalle__info {
     align-self: start;
 }

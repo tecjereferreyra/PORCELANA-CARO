@@ -10,31 +10,81 @@ const contenedorFiltros = document.getElementById('filtros');
 const grilla = document.getElementById('grilla');
 const estadoGaleria = document.getElementById('estado-galeria');
 const selectorModelo = document.getElementById('trabajo');
-
 let trabajos = [];
 
+// Cuántas tarjetas se muestran por tanda (y cuántos esqueletos se dibujan)
+const POR_PAGINA = 8;
+let categoriaActual = null;
+let visibles = POR_PAGINA;
+
+const botonVerMas = document.getElementById('ver-mas');
 
 const CLAVE_SCROLL = 'galeriaScroll';
+const CLAVE_VISIBLES = 'galeriaVisibles';
 
 grilla.addEventListener('click', (evento) => {
     if (!evento.target.closest('a')) return;
     try {
         sessionStorage.setItem(CLAVE_SCROLL, String(window.scrollY));
+        sessionStorage.setItem(CLAVE_VISIBLES, String(visibles));
     } catch {
         // sin almacenamiento disponible: simplemente no se restaura
     }
 });
 
-function restaurarScroll() {
+function volviendoAtras() {
     const navegacion = performance.getEntriesByType('navigation')[0];
-    if (!navegacion || navegacion.type !== 'back_forward') return;
+    return Boolean(navegacion) && navegacion.type === 'back_forward';
+}
+
+// Al volver con "atrás" se recupera cuántas tarjetas había abiertas
+function recuperarVisibles() {
+    if (!volviendoAtras()) return POR_PAGINA;
+    try {
+        const n = Number(sessionStorage.getItem(CLAVE_VISIBLES));
+        return n >= POR_PAGINA ? n : POR_PAGINA;
+    } catch {
+        return POR_PAGINA;
+    }
+}
+
+function restaurarScroll() {
+    if (!volviendoAtras()) return;
     try {
         const y = Number(sessionStorage.getItem(CLAVE_SCROLL));
         sessionStorage.removeItem(CLAVE_SCROLL);
+        sessionStorage.removeItem(CLAVE_VISIBLES);
         if (y > 0) window.scrollTo({ top: y, behavior: 'instant' });
     } catch {
         // nada para restaurar
     }
+}
+
+// Cuando se llega con un ancla (/#pedido), la galería todavía estaba vacía al
+// hacer el salto y después crece: se vuelve a posicionar ya con todo dibujado.
+function irAlAncla() {
+    if (volviendoAtras()) return;
+    let id = window.location.hash.slice(1);
+    if (!id) return;
+    try {
+        id = decodeURIComponent(id);
+    } catch {
+        return;
+    }
+    const destino = document.getElementById(id);
+    if (!destino) return;
+
+
+    const raiz = document.documentElement;
+    const posicionar = () => destino.scrollIntoView({ block: 'start' });
+    raiz.style.scrollBehavior = 'auto';
+    posicionar();
+    requestAnimationFrame(posicionar);
+    setTimeout(posicionar, 100);
+    setTimeout(() => {
+        posicionar();
+        raiz.style.scrollBehavior = '';
+    }, 300);
 }
 
 // ---------- Galería ----------
@@ -43,7 +93,7 @@ function mostrarCargando() {
     grilla.setAttribute('aria-busy', 'true');
     estadoGaleria.textContent = '';
     estadoGaleria.className = 'estado';
-    const esqueletos = Array.from({ length: 6 }, () => {
+        const esqueletos = Array.from({ length: POR_PAGINA }, () => {
         const caja = document.createElement('div');
         caja.className = 'tarjeta--cargando';
         return caja;
@@ -51,13 +101,17 @@ function mostrarCargando() {
     grilla.replaceChildren(...esqueletos);
 }
 
-function mostrarTrabajos(categoriaSlug) {
+function mostrarTrabajos(categoriaSlug, cantidad = POR_PAGINA) {
+    categoriaActual = categoriaSlug;
+    visibles = cantidad;
+
     const lista = categoriaSlug
         ? trabajos.filter((t) => t.categoriaSlug === categoriaSlug)
         : trabajos;
 
     grilla.setAttribute('aria-busy', 'false');
-    grilla.replaceChildren(...lista.map(crearTarjeta));
+    grilla.replaceChildren(...lista.slice(0, visibles).map(crearTarjeta));
+    actualizarVerMas(lista.length);
 
     estadoGaleria.className = 'estado';
     estadoGaleria.textContent =
@@ -72,7 +126,22 @@ function mostrarTrabajos(categoriaSlug) {
     }
     history.replaceState(null, '', url);
 }
+function actualizarVerMas(total) {
+    if (botonVerMas) botonVerMas.hidden = visibles >= total;
+}
 
+// Agrega la tanda siguiente sin redibujar lo que ya se ve (no salta el scroll)
+function verMas() {
+    const lista = categoriaActual
+        ? trabajos.filter((t) => t.categoriaSlug === categoriaActual)
+        : trabajos;
+    const desde = visibles;
+    visibles += POR_PAGINA;
+    grilla.append(...lista.slice(desde, visibles).map(crearTarjeta));
+    actualizarVerMas(lista.length);
+}
+
+if (botonVerMas) botonVerMas.addEventListener('click', verMas);
 function mostrarErrorGaleria(error) {
     grilla.setAttribute('aria-busy', 'false');
     grilla.replaceChildren();
@@ -113,7 +182,8 @@ async function iniciar() {
             contenedorFiltros.replaceChildren();
             grilla.setAttribute('aria-busy', 'false');
             grilla.replaceChildren();
-            estadoGaleria.textContent = 'Pronto vamos a subir nuevos trabajos.';
+                       estadoGaleria.textContent = 'Pronto vamos a subir nuevos trabajos.';
+            if (botonVerMas) botonVerMas.hidden = true;
             return;
         }
 
@@ -131,14 +201,17 @@ async function iniciar() {
             contenedorFiltros.replaceChildren();
         }
 
-        mostrarTrabajos(inicial);
+               mostrarTrabajos(inicial, recuperarVisibles());
         restaurarScroll();
 
         if (selectorModelo && selectorModelo.options.length === 1) {
             llenarSelectorModelo();
         }
-    } catch (error) {
+       } catch (error) {
+        if (botonVerMas) botonVerMas.hidden = true;
         mostrarErrorGaleria(error);
+    } finally {
+        irAlAncla();
     }
 }
 
