@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Caro Porcelana | Porcelana fría artesanal en miniatura</title>
+    <meta name="description" content="Souvenirs, regalos, personajes, vehículos, letras y flores modelados a mano en porcelana fría. Piezas únicas en miniatura, hechas a pedido.">
+    <meta name="theme-color" content="#ece9e4">
+    <link rel="canonical" href="%%SITIO_URL%%/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:site_name" content="Caro Porcelana">
+    <meta property="og:title" content="Caro Porcelana | Porcelana fría artesanal en miniatura">
+    <meta property="og:description" content="Souvenirs, regalos, personajes, vehículos, letras y flores modelados a mano. Piezas únicas hechas a pedido.">
+    <meta property="og:url" content="%%SITIO_URL%%/">
+        %%OG_IMAGE%%
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="/Style.css">
+
+    <!-- Datos estructurados para Google (no se ejecuta, solo se lee) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Caro Porcelana",
+        "description": "Piezas artesanales en miniatura modeladas en porcelana fría, hechas a pedido.",
+        "url": "%%SITIO_URL%%/",
+        "telephone": "+5493573404315",
+        "email": "caro-albert@hotmail.com",
+        "sameAs": ["https://www.facebook.com/carolina.albert.146"]
+    }
+    </script>
+</head>
+<body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <header class="cabecera">
+        <a class="marca" href="/" aria-label="Caro Porcelana, inicio">Caro Porcelana</a>
+        <nav class="menu" aria-label="Principal">
+            <a href="#galeria">Galería</a>
+            <a href="#pedido">Encargá la tuya</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <main id="contenido">
+
+        <!-- HERO -->
+        <section class="hero" aria-labelledby="hero-titulo">
+            <h1 id="hero-titulo" class="hero__titulo">Todo lo que imaginás, en miniatura.</h1>
+            <p class="hero__texto">Souvenirs, regalos, personajes, vehículos, letras y flores en porcelana fría. Cada pieza se modela a mano y a pedido.</p>
+            <div class="hero__acciones">
+                <a class="boton" href="#galeria">Ver trabajos</a>
+                <a class="boton boton--suave" href="#pedido">Hacer un pedido</a>
+            </div>
+        </section>
+
+        <!-- GALERÍA -->
+        <section id="galeria" class="seccion" aria-labelledby="galeria-titulo">
+            <header class="seccion__cabecera">
+                <h2 id="galeria-titulo" class="seccion__titulo">Galería</h2>
+                <p class="seccion__texto">Tocá una pieza para verla en detalle.</p>
+            </header>
+
+            <div id="filtros" class="filtros" role="group" aria-label="Filtrar por categoría"></div>
+
+            <div id="grilla" class="grilla" aria-live="polite"></div>
+            <p id="estado-galeria" class="estado" role="status"></p>
+        </section>
+
+        <!-- PEDIDO -->
+        <section id="pedido" class="seccion seccion--alt" aria-labelledby="pedido-titulo">
+            <div class="pedido">
+                <div class="pedido__intro">
+                    <h2 id="pedido-titulo" class="seccion__titulo">Encargá la tuya</h2>
+                    <p class="seccion__texto">Contanos qué imaginás y lo coordinamos por WhatsApp.</p>
+                    <ol class="pasos">
+                        <li>Elegí un modelo o describí tu idea.</li>
+                        <li>Completá tus datos de contacto.</li>
+                        <li>Se abre WhatsApp con el pedido ya redactado: solo tenés que enviarlo.</li>
+                    </ol>
+                </div>
+
+                <form id="form-pedido" class="formulario" novalidate>
+                    <div class="campo">
+                        <label for="nombre">Nombre</label>
+                        <input id="nombre" name="nombre" type="text" maxlength="100" autocomplete="name" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="telefono">Teléfono</label>
+                        <input id="telefono" name="telefono" type="tel" inputmode="numeric" maxlength="20" autocomplete="tel-national" placeholder="3573404315" aria-describedby="ayuda-telefono" required>
+                        <small id="ayuda-telefono">Código de área sin 0 y número sin 15.</small>
+                    </div>
+
+                    <div class="campo">
+                        <label for="email">Email <span class="opcional">(opcional)</span></label>
+                        <input id="email" name="email" type="email" maxlength="150" autocomplete="email">
+                    </div>
+
+                    <div class="campo">
+                        <label for="trabajo">Modelo</label>
+                        <select id="trabajo" name="trabajo">
+                            <option value="">A medida (no está en la galería)</option>
+                        </select>
+                    </div>
+
+                    <div class="campo campo--fila">
+                        <div>
+                            <label for="cantidad">Cantidad</label>
+                            <input id="cantidad" name="cantidad" type="number" min="1" max="500" value="1" inputmode="numeric" required>
+                        </div>
+                        <div>
+                            <label for="fechaNecesaria">Lo necesito para <span class="opcional">(opcional)</span></label>
+                            <input id="fechaNecesaria" name="fechaNecesaria" type="date">
+                        </div>
+                    </div>
+
+                    <div class="campo">
+                        <label for="descripcion">Detalles del pedido</label>
+                        <textarea id="descripcion" name="descripcion" rows="5" minlength="10" maxlength="1000" placeholder="Colores, tamaño, nombre, ocasión, referencias…" required></textarea>
+                    </div>
+
+                    <!-- Campo trampa para bots: se oculta con CSS, una persona nunca lo completa -->
+                    <div class="trampa" aria-hidden="true">
+                        <label for="sitioWeb">No completar este campo</label>
+                        <input id="sitioWeb" name="sitioWeb" type="text" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <button class="boton boton--bloque" type="submit" id="boton-pedido">Enviar pedido por WhatsApp</button>
+                    <p id="estado-form" class="estado" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- CONTACTO -->
+    <footer id="contacto" class="pie">
+        <div class="pie__interior">
+            <div>
+                <p class="pie__marca">Caro Porcelana</p>
+                <p class="pie__texto">Hecho a mano, pieza por pieza.</p>
+            </div>
+
+            <ul class="pie__enlaces">
+                <li><a href="https://wa.me/5493573404315?text=Hola%21%20Quisiera%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer">WhatsApp · 3573 404315</a></li>
+                <li><a href="mailto:caro-albert@hotmail.com">caro-albert@hotmail.com</a></li>
+                <li><a href="https://www.facebook.com/carolina.albert.146" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                <!-- Instagram: agregar acá cuando tengamos el enlace -->
+            </ul>
+        </div>
+    </footer>
+
+    <script type="module" src="/js/app.js"></script>
+</body>
+</html>

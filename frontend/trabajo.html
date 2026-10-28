@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Las marcas %%...%% las completa el servidor con los datos de cada pieza -->
+    <title>%%TITULO%%</title>
+    <meta name="description" content="%%DESCRIPCION_META%%">
+    <meta name="theme-color" content="#ece9e4">
+    <link rel="canonical" href="%%URL%%">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:site_name" content="Caro Porcelana">
+    <meta property="og:title" content="%%TITULO%%">
+    <meta property="og:description" content="%%DESCRIPCION_META%%">
+    <meta property="og:url" content="%%URL%%">
+    <meta property="og:image" content="%%IMAGEN%%">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="/Style.css">
+</head>
+<body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <header class="cabecera">
+        <a class="marca" href="/" aria-label="Caro Porcelana, inicio">Caro Porcelana</a>
+        <nav class="menu" aria-label="Principal">
+            <a href="/#galeria">Galería</a>
+            <a href="/#pedido">Encargá la tuya</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <main id="contenido" class="detalle">
+        <p class="migas"><a href="/#galeria">← Volver a la galería</a></p>
+
+        <figure class="visor" id="visor">
+            <div class="visor__marco" id="visor-marco">
+                <img class="visor__imagen" src="%%IMAGEN%%" alt="%%NOMBRE%%" width="1200" height="1500">
+            </div>
+            <figcaption class="visor__ayuda" id="visor-ayuda">Tocá la imagen para acercarla.</figcaption>
+        </figure>
+
+        <div class="detalle__info">
+            <a class="detalle__categoria" href="/?categoria=%%CATEGORIA_SLUG%%#galeria">%%CATEGORIA%%</a>
+            <h1 class="detalle__titulo">%%NOMBRE%%</h1>
+            <p class="detalle__texto">%%DESCRIPCION%%</p>
+
+            <div class="detalle__acciones">
+                <a class="boton" href="%%WHATSAPP%%" target="_blank" rel="noopener noreferrer">Encargar por WhatsApp</a>
+                <a class="boton boton--suave" href="/#pedido">Completar el formulario</a>
+            </div>
+        </div>
+    </main>
+
+    <footer id="contacto" class="pie">
+        <div class="pie__interior">
+            <div>
+                <p class="pie__marca">Caro Porcelana</p>
+                <p class="pie__texto">Hecho a mano, pieza por pieza.</p>
+            </div>
+
+            <ul class="pie__enlaces">
+                <li><a href="https://wa.me/5493573404315?text=Hola%21%20Quisiera%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer">WhatsApp · 3573 404315</a></li>
+                <li><a href="mailto:caro-albert@hotmail.com">caro-albert@hotmail.com</a></li>
+                <li><a href="https://www.facebook.com/carolina.albert.146" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                <!-- Instagram: agregar acá cuando tengamos el enlace -->
+            </ul>
+
+            <p class="pie__acceso"><a href="/admin">Administración</a></p>
+        </div>
+    </footer>
+
+    <script type="module" src="/js/trabajo.js"></script>
+</body>
+</html>

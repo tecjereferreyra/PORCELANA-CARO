@@ -1,0 +1,17 @@
+# Dependencias
+node_modules/
+
+# Secretos
+.env
+.env.*
+!.envejemplo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Sistema y editor
+.DS_Store
+Thumbs.db
+.vscode/

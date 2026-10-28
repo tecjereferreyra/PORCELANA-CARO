@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ingresar | Caro Porcelana</title>
+    <!-- El panel no tiene que aparecer en Google -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#ece9e4">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="/Style.css">
+    <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body class="acceso-pagina">
+    <main class="acceso">
+        <a class="marca" href="/">Caro Porcelana</a>
+        <h1 class="acceso__titulo">Panel de administración</h1>
+
+        <form id="form-login" class="formulario" novalidate>
+            <div class="campo">
+                <label for="usuario">Usuario</label>
+                <input id="usuario" name="usuario" type="text" maxlength="40" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+            </div>
+
+            <div class="campo">
+                <label for="clave">Contraseña</label>
+                <input id="clave" name="clave" type="password" maxlength="72" autocomplete="current-password" required>
+            </div>
+
+            <div class="campo campo--check">
+                <input id="mostrar-clave" type="checkbox">
+                <label for="mostrar-clave">Mostrar contraseña</label>
+            </div>
+
+            <button class="boton boton--bloque" type="submit" id="boton-login">Ingresar</button>
+            <p id="estado-login" class="estado" role="status" aria-live="polite"></p>
+        </form>
+
+        <p class="acceso__volver"><a href="/">Volver al sitio</a></p>
+    </main>
+
+    <script type="module" src="/js/admin/login.js"></script>
+</body>
+</html>

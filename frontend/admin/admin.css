@@ -1,0 +1,462 @@
+
+
+/* ---------- Pantalla de ingreso ---------- */
+.acceso-pagina {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+.acceso {
+    width: min(100%, 24rem);
+    padding: 2rem 1.25rem;
+}
+
+.acceso__titulo {
+    margin: 1.6rem 0 1.6rem;
+    font-size: 1.9rem;
+}
+
+.acceso__volver {
+    margin-top: 1.4rem;
+    font-size: 0.95rem;
+    color: var(--grafito);
+}
+
+.acceso__volver a {
+    text-underline-offset: 0.3em;
+}
+
+/* ---------- Cabecera del panel ---------- */
+.cabecera__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.3rem 1.2rem;
+    font-size: 0.95rem;
+}
+
+.cabecera__acciones a {
+    text-underline-offset: 0.3em;
+}
+
+.cabecera__usuario {
+    color: var(--grafito);
+}
+
+/* ---------- Estructura del panel ---------- */
+.panel {
+    padding: clamp(1.5rem, 4vw, 2.5rem) var(--margen) 5rem;
+}
+
+.panel__titulo {
+    margin-bottom: 1.4rem;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+}
+
+.pestanas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1.8rem;
+    margin-bottom: 1.8rem;
+    border-bottom: 1px solid var(--piedra-200);
+}
+
+.pestana {
+    margin: 0 0 -1px;
+    padding: 0.6rem 0;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    background: none;
+    color: var(--grafito);
+    font: 400 1rem/1.3 var(--fuente);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.pestana:hover {
+    color: var(--negro);
+}
+
+.pestana[aria-selected="true"] {
+    color: var(--negro);
+    font-weight: 500;
+    border-bottom-color: var(--negro);
+}
+
+/* Cantidad de pedidos nuevos */
+.pestana__aviso {
+    display: inline-block;
+    min-width: 1.3rem;
+    margin-left: 0.35rem;
+    padding: 0 0.4rem;
+    border-radius: 3px;
+    background: var(--negro);
+    color: var(--piedra-50);
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: 1.3rem;
+    text-align: center;
+}
+
+.pestana__aviso[hidden] {
+    display: none;
+}
+
+/* ---------- Controles sueltos (fuera de .campo) ---------- */
+.control {
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--piedra-400);
+    border-radius: 6px;
+    background: var(--blanco);
+    color: var(--negro);
+    font: 400 0.98rem/1.3 var(--fuente);
+}
+
+.control:focus {
+    outline: 2px solid var(--negro);
+    outline-offset: 1px;
+    border-color: var(--negro);
+}
+
+/* ---------- Barra de herramientas ---------- */
+.barra {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.8rem 1.4rem;
+    margin-bottom: 1.2rem;
+}
+
+.barra__grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.barra__grupo label {
+    font-size: 0.88rem;
+    font-weight: 500;
+}
+
+.barra__resumen {
+    margin-left: auto;
+    color: var(--grafito);
+    font-size: 0.95rem;
+}
+
+/* ---------- Pedidos ---------- */
+.fila {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--piedra-200);
+}
+
+.lista .fila:last-child {
+    border-bottom: 1px solid var(--piedra-200);
+}
+
+.fila__cabecera {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.2rem 1rem;
+}
+
+.fila__cabecera h3 {
+    font-size: 1.3rem;
+}
+
+.fila__nuevo {
+    margin-left: 0.7rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    background: var(--negro);
+    color: var(--piedra-50);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    vertical-align: middle;
+}
+
+.fila__nuevo[hidden] {
+    display: none;
+}
+
+.fila__fecha {
+    font-size: 0.9rem;
+    color: var(--grafito);
+}
+
+.fila__datos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 0.8rem 1.4rem;
+    margin: 1.1rem 0;
+}
+
+.fila__datos dt {
+    font-size: 0.85rem;
+    color: var(--grafito);
+}
+
+.fila__datos dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.fila__datos a {
+    text-underline-offset: 0.3em;
+}
+
+.fila__detalle {
+    max-width: 62ch;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.fila__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.8rem 1.4rem;
+    margin-top: 1.2rem;
+}
+
+/* Casilla con su texto en una sola línea */
+.campo--check {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.campo--check input {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 0;
+    accent-color: var(--negro);
+}
+
+.campo--check label {
+    margin: 0;
+    font-weight: 400;
+}
+
+/* ---------- Formularios en línea (categorías) ---------- */
+.intro {
+    max-width: 60ch;
+    margin-bottom: 1.8rem;
+    color: var(--grafito);
+}
+
+.nueva {
+    padding-bottom: 1.6rem;
+}
+
+.nueva__titulo {
+    margin-bottom: 0.9rem;
+    font-size: 1.3rem;
+}
+
+.linea {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.8rem 1.2rem;
+}
+
+.linea__ancho {
+    flex: 1 1 14rem;
+}
+
+.linea .control {
+    width: 100%;
+}
+
+.linea input[type="number"] {
+    width: 6rem;
+}
+
+.fila-categoria {
+    padding: 1.2rem 0;
+    border-top: 1px solid var(--piedra-200);
+}
+
+.lista .fila-categoria:last-child {
+    border-bottom: 1px solid var(--piedra-200);
+}
+
+.fila-categoria__meta {
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--grafito);
+}
+
+.barra__grupo--check {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 0.6rem;
+}
+
+.barra__grupo--check input {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 0;
+    accent-color: var(--negro);
+}
+
+.barra__grupo--check label {
+    font-weight: 400;
+}
+
+/* ---------- Trabajos ---------- */
+.nuevo {
+    margin-bottom: 1.8rem;
+}
+
+/* El resumen del <details> con aspecto de botón */
+.nuevo > summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+.nuevo > summary::-webkit-details-marker {
+    display: none;
+}
+
+.nuevo[open] > summary {
+    background: var(--grafito);
+    border-color: var(--grafito);
+}
+
+.nuevo__cuerpo {
+    margin-top: 1.4rem;
+    padding: 1.6rem 0 0.4rem;
+    border-top: 1px solid var(--piedra-200);
+}
+
+.formulario-trabajo__cuerpo {
+    display: grid;
+    gap: 0 2.4rem;
+    max-width: 54rem;
+}
+
+.formulario-trabajo__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.8rem 1.4rem;
+    margin-top: 0.4rem;
+}
+
+.previa {
+    width: 10rem;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    margin-top: 0.8rem;
+    border-radius: 4px;
+    background: var(--piedra-200);
+}
+
+.previa[hidden] {
+    display: none;
+}
+
+.fila-trabajo {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: 0.8rem 1.2rem;
+    align-items: start;
+    padding: 1.2rem 0;
+    border-top: 1px solid var(--piedra-200);
+}
+
+.lista .fila-trabajo:last-child {
+    border-bottom: 1px solid var(--piedra-200);
+}
+
+.fila-trabajo--edicion {
+    display: block;
+}
+
+.fila-trabajo__imagen {
+    width: 6rem;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 4px;
+    background: var(--piedra-200);
+}
+
+.fila-trabajo__datos h3 {
+    font-size: 1.25rem;
+}
+
+.fila-trabajo__meta {
+    margin-top: 0.15rem;
+    font-size: 0.88rem;
+    color: var(--grafito);
+    overflow-wrap: anywhere;
+}
+
+.fila-trabajo__texto {
+    margin-top: 0.4rem;
+    max-width: 52ch;
+}
+
+.fila-trabajo__acciones {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 1.4rem;
+}
+
+.fila-trabajo__acciones a {
+    text-underline-offset: 0.3em;
+}
+
+.etiqueta {
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    background: var(--negro);
+    color: var(--piedra-50);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    vertical-align: middle;
+}
+
+.etiqueta--gris {
+    background: var(--piedra-200);
+    color: var(--negro);
+}
+
+.boton--peligro {
+    color: var(--error);
+}
+
+.boton--peligro:hover {
+    color: var(--error);
+    text-decoration-color: var(--error);
+}
+
+@media (min-width: 720px) {
+    .formulario-trabajo__cuerpo {
+        grid-template-columns: 1.3fr 1fr;
+    }
+
+    .fila-trabajo {
+        grid-template-columns: 6rem 1fr auto;
+    }
+
+    .fila-trabajo__acciones {
+        grid-column: auto;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Panel | Caro Porcelana</title>
+    <!-- El panel no tiene que aparecer en Google -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#ece9e4">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="/Style.css">
+    <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <header class="cabecera">
+        <span class="marca">Caro Porcelana</span>
+        <div class="cabecera__acciones">
+            <span class="cabecera__usuario" id="nombre-usuario"></span>
+            <a href="/" target="_blank" rel="noopener">Ver el sitio</a>
+            <button class="boton boton--suave" type="button" id="boton-salir">Salir</button>
+        </div>
+    </header>
+
+    <main id="contenido" class="panel">
+        <h1 class="panel__titulo">Panel</h1>
+
+        <div class="pestanas" role="tablist" aria-label="Secciones del panel">
+            <button class="pestana" type="button" role="tab" id="tab-pedidos" aria-controls="seccion-pedidos" aria-selected="true">
+                Pedidos <span class="pestana__aviso" id="contador-pedidos" hidden></span>
+            </button>
+            <button class="pestana" type="button" role="tab" id="tab-categorias" aria-controls="seccion-categorias" aria-selected="false" tabindex="-1">Categorías</button>
+            <button class="pestana" type="button" role="tab" id="tab-trabajos" aria-controls="seccion-trabajos" aria-selected="false" tabindex="-1">Trabajos</button>
+        </div>
+
+        <!-- Cada sección la dibuja su módulo (js/admin/componentes/) la primera vez que se abre -->
+        <section id="seccion-pedidos" role="tabpanel" aria-labelledby="tab-pedidos"></section>
+        <section id="seccion-categorias" role="tabpanel" aria-labelledby="tab-categorias" hidden></section>
+        <section id="seccion-trabajos" role="tabpanel" aria-labelledby="tab-trabajos" hidden></section>
+    </main>
+
+    <script type="module" src="/js/admin/panel.js"></script>
+</body>
+</html>

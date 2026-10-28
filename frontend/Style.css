@@ -1,0 +1,717 @@
+/* =====================================================================
+   Caro Porcelana  |  Style.css
+   Piedra y grafito: fondos grises-beige apagados, texto casi negro y sin
+   color de acento (los colores los ponen las fotos de los trabajos).
+   Una sola familia tipográfica: Outfit.
+   Nada de estilos inline en el HTML: la política de seguridad (CSP) los bloquea.
+   ===================================================================== */
+
+/* ---------- Variables ---------- */
+:root {
+    --blanco: #ffffff;
+    --piedra-50: #f6f5f3;
+    --piedra-100: #ece9e4;
+    --piedra-200: #dcd8d1;
+    --piedra-400: #a8a39b;
+    --grafito: #5d5a55;
+    --negro: #1f1f1f;
+    --error: #a3362d;
+    --ok: #3f6247;
+
+    --fuente: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    --ancho: 1120px;
+    --margen: max(clamp(1.25rem, 4vw, 2.5rem), calc((100vw - var(--ancho)) / 2));
+    --alto-cabecera: 64px;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    background: var(--piedra-100);
+    color: var(--negro);
+    font-family: var(--fuente);
+    font-size: 1.0625rem;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+}
+
+p {
+    margin: 0;
+}
+
+::selection {
+    background: var(--negro);
+    color: var(--piedra-50);
+}
+
+:focus-visible {
+    outline: 2px solid var(--negro);
+    outline-offset: 3px;
+}
+
+/* Enlace para saltar al contenido (teclado / lector de pantalla) */
+.saltar {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 100;
+    padding: 0.6rem 1rem;
+    background: var(--negro);
+    color: var(--piedra-50);
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.saltar:focus {
+    top: 1rem;
+}
+
+/* ---------- Cabecera ---------- */
+.cabecera {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: var(--alto-cabecera);
+    padding: 0.5rem var(--margen);
+    background: rgb(236 233 228 / 92%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--piedra-200);
+}
+
+.marca {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+}
+
+.menu {
+    display: flex;
+    gap: clamp(1rem, 3vw, 2rem);
+    font-size: 0.95rem;
+}
+
+.menu a {
+    padding: 0.25rem 0;
+    color: var(--grafito);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+    color: var(--negro);
+    border-bottom-color: var(--negro);
+}
+
+/* ---------- Botones ---------- */
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.6rem;
+    border: 1px solid var(--negro);
+    border-radius: 6px;
+    background: var(--negro);
+    color: var(--piedra-50);
+    font: 500 0.98rem/1 var(--fuente);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.boton:hover {
+    background: var(--grafito);
+    border-color: var(--grafito);
+}
+
+/* Acción secundaria: solo texto subrayado */
+.boton--suave {
+    padding-inline: 0.2rem;
+    border-color: transparent;
+    background: transparent;
+    color: var(--negro);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.4em;
+}
+
+.boton--suave:hover {
+    border-color: transparent;
+    background: transparent;
+    color: var(--grafito);
+}
+
+.boton--bloque {
+    width: 100%;
+}
+
+.boton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+    padding: clamp(4rem, 12vw, 9rem) var(--margen) clamp(3.5rem, 9vw, 7rem);
+}
+
+.hero__titulo {
+    max-width: 11em;
+    font-size: clamp(2.7rem, 8.2vw, 6rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.hero__texto {
+    max-width: 34em;
+    margin-top: clamp(1.4rem, 3vw, 2rem);
+    font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+    color: var(--grafito);
+}
+
+.hero__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.2rem 1.6rem;
+    margin-top: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+/* ---------- Secciones ---------- */
+.seccion {
+    padding: clamp(3rem, 7vw, 5.5rem) var(--margen);
+    scroll-margin-top: var(--alto-cabecera);
+}
+
+.seccion--alt {
+    background: var(--piedra-50);
+    border-top: 1px solid var(--piedra-200);
+}
+
+.seccion__cabecera {
+    margin-bottom: 1.6rem;
+}
+
+.seccion__titulo {
+    font-size: clamp(1.9rem, 4.6vw, 2.8rem);
+}
+
+.seccion__texto {
+    max-width: 38em;
+    margin-top: 0.7rem;
+    color: var(--grafito);
+}
+
+/* ---------- Filtros de la galería (texto con subrayado) ---------- */
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.6rem;
+    margin-bottom: 2.2rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--piedra-200);
+}
+
+.filtro {
+    margin: 0;
+    padding: 0.3rem 0;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    background: none;
+    color: var(--grafito);
+    font: 400 1rem/1.3 var(--fuente);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.filtro:hover {
+    color: var(--negro);
+}
+
+.filtro[aria-pressed="true"] {
+    color: var(--negro);
+    font-weight: 500;
+    border-bottom-color: var(--negro);
+}
+
+/* ---------- Grilla y tarjetas (sin caja: foto + texto) ---------- */
+.grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+    gap: clamp(1.4rem, 3vw, 2rem) clamp(1rem, 2.4vw, 1.6rem);
+}
+
+/* Cada pieza va "montada": la foto sobre un paspartú claro con un borde finito,
+   como una lámina enmarcada. Al pasar el mouse el fondo se aclara. */
+.tarjeta__enlace {
+    display: block;
+    padding: 0.6rem 0.6rem 1.15rem;
+    border: 1px solid var(--piedra-200);
+    border-radius: 6px;
+    background: var(--piedra-50);
+    text-decoration: none;
+    transition: background 0.25s, border-color 0.25s;
+}
+
+.tarjeta__enlace:hover,
+.tarjeta__enlace:focus-visible {
+    background: var(--blanco);
+    border-color: var(--piedra-400);
+}
+
+.tarjeta__marco {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    border-radius: 2px;
+    background: var(--piedra-200);
+}
+
+.tarjeta__imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.tarjeta__enlace:hover .tarjeta__imagen,
+.tarjeta__enlace:focus-visible .tarjeta__imagen {
+    transform: scale(1.03);
+}
+
+.tarjeta__sello {
+    position: absolute;
+    top: 0.55rem;
+    left: 0.55rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    background: rgb(246 245 243 / 94%);
+    font-size: 0.74rem;
+    font-weight: 400;
+}
+
+.tarjeta__cuerpo {
+    padding: 1rem 0.4rem 0;
+}
+
+/* Rayita fina entre la foto y el texto, como en la etiqueta de una vitrina */
+.tarjeta__cuerpo::before {
+    content: "";
+    display: block;
+    width: 1.6rem;
+    height: 1px;
+    margin-bottom: 0.8rem;
+    background: var(--piedra-400);
+}
+
+.tarjeta__categoria {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--grafito);
+}
+
+.tarjeta__titulo {
+    margin-top: 0.15rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    transition: text-decoration-color 0.15s;
+}
+
+.tarjeta__enlace:hover .tarjeta__titulo,
+.tarjeta__enlace:focus-visible .tarjeta__titulo {
+    text-decoration-color: var(--negro);
+}
+
+.tarjeta__texto {
+    display: -webkit-box;
+    margin-top: 0.3rem;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--grafito);
+}
+
+/* Estado de carga: un pulso suave mientras llegan los datos */
+.tarjeta--cargando {
+    aspect-ratio: 4 / 5;
+    border-radius: 4px;
+    background: var(--piedra-200);
+    animation: pulso 1.3s ease-in-out infinite;
+}
+
+@keyframes pulso {
+    50% {
+        opacity: 0.55;
+    }
+}
+
+/* ---------- Mensajes de estado ---------- */
+.estado {
+    min-height: 1.5rem;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: var(--grafito);
+}
+
+.estado--error {
+    color: var(--error);
+}
+
+.estado--ok {
+    color: var(--ok);
+}
+
+/* ---------- Pedido ---------- */
+.pedido {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4.5rem);
+}
+
+.pasos {
+    margin: 1.8rem 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: paso;
+}
+
+.pasos li {
+    display: grid;
+    grid-template-columns: 1.8rem 1fr;
+    margin-bottom: 0.7rem;
+    counter-increment: paso;
+    color: var(--grafito);
+}
+
+.pasos li::before {
+    content: counter(paso) ".";
+    color: var(--negro);
+    font-weight: 500;
+}
+
+/* ---------- Formularios ---------- */
+.campo {
+    margin-bottom: 1.1rem;
+}
+
+.campo--fila {
+    display: grid;
+    gap: 1.1rem;
+}
+
+.campo--fila > div {
+    min-width: 0;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.92rem;
+    font-weight: 500;
+}
+
+.opcional {
+    font-weight: 400;
+    color: var(--grafito);
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+    width: 100%;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid var(--piedra-400);
+    border-radius: 6px;
+    background: var(--blanco);
+    color: var(--negro);
+    font: 400 1rem/1.4 var(--fuente);
+    transition: border-color 0.15s;
+}
+
+.campo textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+    outline: 2px solid var(--negro);
+    outline-offset: 1px;
+    border-color: var(--negro);
+}
+
+.campo small {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.85rem;
+    color: var(--grafito);
+}
+
+.campo--error input,
+.campo--error select,
+.campo--error textarea {
+    border-color: var(--error);
+}
+
+.campo__error {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.88rem;
+    color: var(--error);
+}
+
+/* Campo trampa anti-bots: fuera de la pantalla, nunca con display:none */
+.trampa {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* ---------- Pie ---------- */
+.pie {
+    padding: clamp(2.5rem, 6vw, 4rem) var(--margen);
+    background: var(--negro);
+    color: var(--piedra-100);
+}
+
+.pie__interior {
+    display: grid;
+    gap: 1.8rem;
+}
+
+.pie__marca {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.pie__texto {
+    margin-top: 0.3rem;
+    color: var(--piedra-400);
+}
+
+.pie__enlaces {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pie__enlaces a {
+    text-decoration: underline;
+    text-decoration-color: var(--grafito);
+    text-underline-offset: 0.3em;
+    transition: text-decoration-color 0.15s;
+}
+
+.pie__enlaces a:hover,
+.pie__enlaces a:focus-visible {
+    text-decoration-color: var(--piedra-50);
+}
+
+.pie :focus-visible {
+    outline-color: var(--piedra-50);
+}
+
+/* Acceso discreto al panel, al pie del pie de página */
+.pie__acceso {
+    grid-column: 1 / -1;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--grafito);
+    font-size: 0.88rem;
+    color: var(--piedra-400);
+}
+
+.pie__acceso a {
+    text-underline-offset: 0.3em;
+}
+
+.pie__acceso a:hover,
+.pie__acceso a:focus-visible {
+    color: var(--piedra-50);
+}
+
+/* ---------- Ficha de un trabajo (trabajo.html) ---------- */
+.detalle {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    padding: clamp(1.5rem, 4vw, 2.5rem) var(--margen) clamp(3rem, 7vw, 5rem);
+}
+
+.migas {
+    grid-column: 1 / -1;
+}
+
+.migas a {
+    font-size: 0.95rem;
+    color: var(--grafito);
+    text-underline-offset: 0.3em;
+}
+
+.migas a:hover {
+    color: var(--negro);
+}
+
+/* Visor con zoom: el JS agrega .visor--zoom y mueve --x / --y */
+.visor {
+    margin: 0;
+}
+
+.visor__marco {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--piedra-200);
+    cursor: zoom-in;
+    touch-action: pan-y;
+}
+
+.visor__imagen {
+    width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    transform-origin: var(--x, 50%) var(--y, 50%);
+    transition: transform 0.2s ease;
+}
+
+.visor--zoom .visor__marco {
+    cursor: zoom-out;
+}
+
+.visor--zoom .visor__imagen {
+    transform: scale(2.4);
+}
+
+.visor__ayuda {
+    margin-top: 0.6rem;
+    font-size: 0.88rem;
+    color: var(--grafito);
+}
+
+.detalle__info {
+    align-self: start;
+}
+
+.detalle__categoria {
+    display: inline-block;
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+    color: var(--grafito);
+    text-underline-offset: 0.3em;
+}
+
+.detalle__titulo {
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    letter-spacing: -0.035em;
+}
+
+.detalle__texto {
+    max-width: 34em;
+    margin-top: 1.2rem;
+    color: var(--grafito);
+}
+
+.detalle__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.4rem;
+    margin-top: 2rem;
+}
+
+/* ---------- Pantallas más grandes ---------- */
+@media (min-width: 720px) {
+    .campo--fila {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .pie__interior {
+        grid-template-columns: 1fr auto;
+        align-items: end;
+    }
+}
+
+@media (min-width: 960px) {
+    .pedido {
+        grid-template-columns: 0.8fr 1.2fr;
+        align-items: start;
+    }
+
+    .detalle {
+        grid-template-columns: 1.2fr 0.8fr;
+    }
+}
+
+/* ---------- Pantallas muy chicas ---------- */
+@media (max-width: 480px) {
+    .menu a:nth-child(2) {
+        display: none; /* en celular el pedido se alcanza desde el hero */
+    }
+}
+
+/* ---------- Respeto por quienes reducen animaciones ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
