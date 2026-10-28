@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 const path = require('path');
 const express = require('express');
@@ -83,6 +82,12 @@ app.use('/api', noEncontrado);
 
 // Páginas con SEO dinámico (portada y ficha de cada trabajo).
 // Van ANTES del express.static para que sirvan ellas el HTML.
+// El panel de administración no debe aparecer en Google
+app.use('/admin', (req, res, next) => {
+    res.set('X-Robots-Tag', 'noindex, nofollow');
+    next();
+});
+
 app.use(paginasRoutes);
 
 // ---------------------------------------------------------------------

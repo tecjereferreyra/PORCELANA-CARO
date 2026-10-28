@@ -1,10 +1,11 @@
-
 const { Router } = require('express');
 const paginasController = require('../controllers/paginas.controller');
 
 const router = Router();
 
 router.get('/', paginasController.inicio);
+router.get('/robots.txt', paginasController.robots);
+router.get('/sitemap.xml', paginasController.sitemap);
 router.get('/index.html', (req, res) => res.redirect(301, '/')); // una sola URL para la portada
 router.get('/trabajo/:slug', paginasController.trabajo);
 

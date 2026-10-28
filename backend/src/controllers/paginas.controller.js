@@ -1,4 +1,3 @@
-
 const fs = require('fs');
 const path = require('path');
 const asyncHandler = require('../middlewares/asyncHandler');
@@ -73,4 +72,34 @@ const trabajo = asyncHandler(async (req, res, next) => {
     enviarHtml(res, html);
 });
 
-module.exports = { inicio, trabajo };
+// GET /robots.txt
+const robots = (req, res) => {
+    res.type('text/plain').send(
+        [
+            'User-agent: *',
+            'Allow: /',
+            'Disallow: /admin/',
+            'Disallow: /api/',
+            '',
+            `Sitemap: ${SITIO_URL}/sitemap.xml`,
+            ''
+        ].join('\n')
+    );
+};
+
+// GET /sitemap.xml  (portada + una URL por cada trabajo publicado)
+const sitemap = asyncHandler(async (req, res) => {
+    const lista = await trabajosService.listarTrabajos();
+    const rutas = ['/', ...lista.map((t) => `/trabajo/${t.slug}`)];
+    const urls = rutas
+        .map((r) => `  <url><loc>${escapar(SITIO_URL + r)}</loc></url>`)
+        .join('\n');
+    const xml =
+        '<?xml version="1.0" encoding="UTF-8"?>\n' +
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+        urls +
+        '\n</urlset>\n';
+    res.set('Cache-Control', 'public, max-age=3600').type('application/xml').send(xml);
+});
+
+module.exports = { inicio, trabajo, robots, sitemap };
