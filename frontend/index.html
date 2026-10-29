@@ -118,6 +118,10 @@
                         <select id="trabajo" name="trabajo">
                             <option value="">A medida (no está en la galería)</option>
                         </select>
+                         <figure id="modelo-vista" class="modelo-vista" hidden>
+                            <img id="modelo-imagen" alt="" width="800" height="1000">
+                            <figcaption id="modelo-nombre"></figcaption>
+                        </figure>
                     </div>
 
                     <div class="campo campo--fila">
@@ -157,12 +161,16 @@
                 <p class="pie__texto">Hecho a mano, pieza por pieza.</p>
             </div>
 
-            <ul class="pie__enlaces">
-                <li><a href="https://wa.me/5493573404315?text=Hola%21%20Quisiera%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer">WhatsApp · 3573 404315</a></li>
-                <li><a href="mailto:caro-albert@hotmail.com">caro-albert@hotmail.com</a></li>
-                <li><a href="https://www.facebook.com/carolina.albert.146" target="_blank" rel="noopener noreferrer">carolina.albert.146</a></li>
-                <!-- Instagram: agregar acá cuando tengamos el enlace -->
-            </ul>
+           <ul class="pie__enlaces">
+    <li><a href="https://wa.me/5493573404315?text=Hola%21%20Quisiera%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp 3573 404315">
+        <svg class="pie__icono" aria-hidden="true"><use href="/img/redes.svg#whatsapp"/></svg>3573 404315</a></li>
+    <li><a href="mailto:caro-albert@hotmail.com">
+        <svg class="pie__icono" aria-hidden="true"><use href="/img/redes.svg#correo"/></svg>caro-albert@hotmail.com</a></li>
+    <li><a href="https://www.facebook.com/carolina.albert.146" target="_blank" rel="noopener noreferrer" aria-label="Facebook carolina.albert.146">
+        <svg class="pie__icono" aria-hidden="true"><use href="/img/redes.svg#facebook"/></svg>carolina.albert.146</a></li>
+    <li><a href="https://www.instagram.com/albert_carolina/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @albert_carolina">
+        <svg class="pie__icono" aria-hidden="true"><use href="/img/redes.svg#instagram"/></svg>@albert_carolina</a></li>
+</ul>
         </div>
     </footer>
 

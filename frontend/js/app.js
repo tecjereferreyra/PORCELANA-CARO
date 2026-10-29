@@ -169,7 +169,30 @@ function llenarSelectorModelo() {
     });
     selectorModelo.append(...opciones);
 }
+// ---------- Vista previa del modelo elegido ----------
 
+const vistaModelo = document.getElementById('modelo-vista');
+const imagenModelo = document.getElementById('modelo-imagen');
+const nombreModelo = document.getElementById('modelo-nombre');
+
+function actualizarVistaModelo() {
+    if (!selectorModelo || !vistaModelo) return;
+    const elegido = trabajos.find((t) => t.slug === selectorModelo.value);
+    vistaModelo.hidden = !elegido;
+    if (!elegido) {
+        imagenModelo.removeAttribute('src');
+        return;
+    }
+    imagenModelo.src = elegido.imagen;
+    imagenModelo.alt = elegido.nombre;
+    nombreModelo.textContent = elegido.nombre;
+}
+
+if (selectorModelo) {
+    selectorModelo.addEventListener('change', actualizarVistaModelo);
+    // Al enviar el pedido el formulario se vacía: la foto también tiene que irse
+    selectorModelo.form?.addEventListener('reset', () => setTimeout(actualizarVistaModelo));
+}
 // ---------- Inicio ----------
 
 async function iniciar() {

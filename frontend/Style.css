@@ -511,7 +511,32 @@ p {
     font-size: 0.85rem;
     color: var(--grafito);
 }
+/* Vista previa del modelo elegido */
+.modelo-vista {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin: 0.8rem 0 0;
+}
 
+.modelo-vista[hidden] {
+    display: none;
+}
+
+.modelo-vista img {
+    width: 5.5rem;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border: 1px solid var(--piedra-200);
+    border-radius: 4px;
+    background: var(--piedra-200);
+}
+
+.modelo-vista figcaption {
+    font-size: 0.95rem;
+    color: var(--grafito);
+}
 .campo--error input,
 .campo--error select,
 .campo--error textarea {
@@ -567,10 +592,24 @@ p {
 }
 
 .pie__enlaces a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
     text-decoration: underline;
     text-decoration-color: var(--grafito);
     text-underline-offset: 0.3em;
     transition: text-decoration-color 0.15s;
+}
+
+.pie__icono {
+    width: 1.3rem;
+    height: 1.3rem;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .pie__enlaces a:hover,
