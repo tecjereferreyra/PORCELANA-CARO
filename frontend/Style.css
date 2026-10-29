@@ -117,12 +117,19 @@ p {
 }
 
 .marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
     font-size: 1.25rem;
     font-weight: 600;
     letter-spacing: -0.02em;
     text-decoration: none;
 }
 
+.marca__logo {
+    height: 2.5rem;   /* 40px: entra en la cabecera de 64px */
+    width: auto;
+}
 .menu {
     display: flex;
     gap: clamp(1rem, 3vw, 2rem);
